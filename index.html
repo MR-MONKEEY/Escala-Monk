@@ -22,7 +22,7 @@
 <body class="gradient-bg min-h-screen text-slate-100 font-sans pb-12">
 
     <!-- Header / Navbar -->
-    <header class="border-b border-slate-800 bg-slate-900/60 backdrop-blur-md sticky top-0 z-50">
+    <header class="border-b border-slate-800 bg-slate-900/65 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center space-x-3">
                 <span class="text-3xl">🧩</span>
@@ -30,11 +30,11 @@
                     <h1 class="text-2xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-purple-400 to-indigo-400">
                         ESCALA MONK
                     </h1>
-                    <p class="text-xs text-slate-400">Sistema de Evaluación de Complejidad de Juegos</p>
+                    <p class="text-xs text-slate-400">Sistema de Evaluación y Comunidad de Videojuegos</p>
                 </div>
             </div>
             <button onclick="resetearEvaluacion()" class="px-4 py-2 text-xs font-semibold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition">
-                <i class="fa-solid fa-rotate-left mr-1">Reiniciar Evaluación</i>
+                <i class="fa-solid fa-rotate-left mr-1"></i> Reiniciar Evaluación
             </button>
         </div>
     </header>
@@ -47,14 +47,14 @@
             <!-- Card: Datos del Juego e Imagen Auto-Fetch -->
             <div class="card-glass p-6 rounded-2xl shadow-xl">
                 <h2 class="text-lg font-bold text-amber-400 mb-4 flex items-center gap-2">
-                    <i class="fa-solid fa-gamepad"></i> Informacion del Videojuego
+                    <i class="fa-solid fa-gamepad"></i> Información del Videojuego
                 </h2>
 
                 <div class="space-y-4">
                     <div>
                         <label class="block text-xs font-semibold text-slate-300 mb-1">Nombre del Juego</label>
                         <div class="flex gap-2">
-                            <input type="text" id="gameName" placeholder="Ej: Elden Ring, Zelda, Tetris..." 
+                            <input type="text" id="gameName" placeholder="Ej: GTA San Andreas, Elden Ring..." 
                                 class="w-full bg-slate-900/80 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
                             <button onclick="buscarPortadaAPI()" class="bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold px-3 py-2 rounded-lg flex items-center gap-1 transition shrink-0">
                                 <i class="fa-solid fa-magnifying-glass"></i> Auto-Portada
@@ -75,76 +75,90 @@
                                 class="w-full text-slate-400 file:mr-2 file:py-1 file:px-2 file:rounded-md file:border-0 file:text-xs file:bg-slate-800 file:text-purple-300 hover:file:bg-slate-700">
                         </div>
                     </div>
-
-                    <!-- Clave opcional RAWG API -->
-                    <div class="pt-2 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
-                        <span>💡 Buscador alimentado por RAWG API</span>
-                        <input type="password" id="rawgApiKey" placeholder="API Key RAWG (opcional)" 
-                            class="bg-slate-900/50 border border-slate-800 rounded px-2 py-0.5 text-slate-300 w-44 focus:outline-none">
-                    </div>
                 </div>
             </div>
 
-            <!-- Card: Criterios MONK -->
+            <!-- Card: Criterios MONK (1 a 5) -->
             <div class="card-glass p-6 rounded-2xl shadow-xl space-y-6">
                 <h2 class="text-lg font-bold text-amber-400 flex items-center gap-2">
-                    <i class="fa-solid fa-sliders"></i> Criterios de Evaluación MONK
+                    <i class="fa-solid fa-sliders"></i> Criterios de Evaluación (1 a 5)
                 </h2>
 
-                <!-- M - Mapeo y Controles -->
+                <!-- 1. Gráficos e Identidad Visual -->
                 <div class="space-y-2">
                     <div class="flex justify-between items-center text-sm font-semibold">
-                        <span class="text-indigo-300"><strong class="text-indigo-400">M</strong> - Mapeo y Controles (1-10)</span>
-                        <span id="valM" class="px-2 py-0.5 bg-indigo-950 text-indigo-300 border border-indigo-800 rounded font-bold">5</span>
+                        <span class="text-indigo-300">1. Gráficos e Identidad Visual</span>
+                        <span id="val1" class="px-2 py-0.5 bg-indigo-950 text-indigo-300 border border-indigo-800 rounded font-bold">3 / 5</span>
                     </div>
-                    <input type="range" id="inputM" min="1" max="10" value="5" oninput="calcularMONK()" 
+                    <input type="range" id="input1" min="1" max="5" value="3" oninput="calcularMONK()" 
                         class="w-full accent-indigo-500 bg-slate-800 rounded-lg cursor-pointer">
-                    <p class="text-xs text-slate-400">Complejidad del esquema de botones, tiempo de respuesta y precisión requerida.</p>
                 </div>
 
-                <!-- O - Orientación Espacial / Mecánicas -->
+                <!-- 2. Inmersión y Cuidado del Mundo -->
                 <div class="space-y-2">
                     <div class="flex justify-between items-center text-sm font-semibold">
-                        <span class="text-purple-300"><strong class="text-purple-400">O</strong> - Orientación Espacial / Reglas (1-10)</span>
-                        <span id="valO" class="px-2 py-0.5 bg-purple-950 text-purple-300 border border-purple-800 rounded font-bold">5</span>
+                        <span class="text-purple-300">2. Inmersión y Cuidado del Mundo</span>
+                        <span id="val2" class="px-2 py-0.5 bg-purple-950 text-purple-300 border border-purple-800 rounded font-bold">3 / 5</span>
                     </div>
-                    <input type="range" id="inputO" min="1" max="10" value="5" oninput="calcularMONK()" 
+                    <input type="range" id="input2" min="1" max="5" value="3" oninput="calcularMONK()" 
                         class="w-full accent-purple-500 bg-slate-800 rounded-lg cursor-pointer">
-                    <p class="text-xs text-slate-400">Lectura del mapa 3D/2D, volumen de reglas, menús y profundidad de sistemas.</p>
                 </div>
 
-                <!-- N - Nivel Cognitivo / Estrategia -->
+                <!-- 3. Historia y Personajes -->
                 <div class="space-y-2">
                     <div class="flex justify-between items-center text-sm font-semibold">
-                        <span class="text-pink-300"><strong class="text-pink-400">N</strong> - Nivel Cognitivo y Estrategia (1-10)</span>
-                        <span id="valN" class="px-2 py-0.5 bg-pink-950 text-pink-300 border border-pink-800 rounded font-bold">5</span>
+                        <span class="text-pink-300">3. Historia y Personajes</span>
+                        <span id="val3" class="px-2 py-0.5 bg-pink-950 text-pink-300 border border-pink-800 rounded font-bold">3 / 5</span>
                     </div>
-                    <input type="range" id="inputN" min="1" max="10" value="5" oninput="calcularMONK()" 
+                    <input type="range" id="input3" min="1" max="5" value="3" oninput="calcularMONK()" 
                         class="w-full accent-pink-500 bg-slate-800 rounded-lg cursor-pointer">
-                    <p class="text-xs text-slate-400">Planificación a largo plazo, resolución de acertijos, gestión de recursos y micro-decisiones.</p>
                 </div>
 
-                <!-- K - Kinestesia y Penalización -->
+                <!-- 4. Jugabilidad y Controles -->
                 <div class="space-y-2">
                     <div class="flex justify-between items-center text-sm font-semibold">
-                        <span class="text-amber-300"><strong class="text-amber-400">K</strong> - Kinestesia y Exigencia de Reflejos (1-10)</span>
-                        <span id="valK" class="px-2 py-0.5 bg-amber-950 text-amber-300 border border-amber-800 rounded font-bold">5</span>
+                        <span class="text-emerald-300">4. Jugabilidad y Controles</span>
+                        <span id="val4" class="px-2 py-0.5 bg-emerald-950 text-emerald-300 border border-emerald-800 rounded font-bold">3 / 5</span>
                     </div>
-                    <input type="range" id="inputK" min="1" max="10" value="5" oninput="calcularMONK()" 
+                    <input type="range" id="input4" min="1" max="5" value="3" oninput="calcularMONK()" 
+                        class="w-full accent-emerald-500 bg-slate-800 rounded-lg cursor-pointer">
+                </div>
+
+                <!-- 5. Banda Sonora y Sonido -->
+                <div class="space-y-2">
+                    <div class="flex justify-between items-center text-sm font-semibold">
+                        <span class="text-amber-300">5. Banda Sonora y Sonido</span>
+                        <span id="val5" class="px-2 py-0.5 bg-amber-950 text-amber-300 border border-amber-800 rounded font-bold">3 / 5</span>
+                    </div>
+                    <input type="range" id="input5" min="1" max="5" value="3" oninput="calcularMONK()" 
                         class="w-full accent-amber-500 bg-slate-800 rounded-lg cursor-pointer">
-                    <p class="text-xs text-slate-400">Velocidad de reacción, coordinación mano-ojo, ritmo de juego y penalización por error.</p>
+                </div>
+
+                <!-- Galardón de Impacto ⭐ -->
+                <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xl">⭐</span>
+                        <div>
+                            <span class="text-sm font-bold text-amber-400 block">Galardón de Impacto</span>
+                            <span class="text-[11px] text-slate-400">¿Marcó un hito o revolucionó su género?</span>
+                        </div>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" id="impactCheck" onchange="calcularMONK()" class="sr-only peer">
+                        <div class="w-11 h-6 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-500"></div>
+                    </label>
                 </div>
             </div>
 
         </section>
 
-        <!-- Columna Derecha: Resultado y Ficha Visually Appealing (5 columnas) -->
+        <!-- Columna Derecha: Resultado y Ficha (5 columnas) -->
         <section class="lg:col-span-5 space-y-6">
 
             <div class="card-glass p-6 rounded-2xl shadow-2xl border border-slate-700/60 sticky top-24 space-y-6">
                 
                 <!-- Portada del juego -->
-                <div class="relative w-full h-56 bg-slate-900 rounded-xl overflow-hidden border border-slate-700 flex items-center justify-center group">
+                <div class="relative w-full h-56 bg-slate-900 rounded-xl overflow-hidden border border-slate-700 flex items-center justify-center">
                     <img id="displayImage" src="" alt="Portada del juego" class="w-full h-full object-cover hidden">
                     <div id="imagePlaceholder" class="text-center p-4">
                         <i class="fa-solid fa-image text-4xl text-slate-600 mb-2"></i>
@@ -156,40 +170,46 @@
                     </span>
                 </div>
 
-                <!-- Puntuación General MONK -->
+                <!-- Puntuación Promedio MONK -->
                 <div class="text-center space-y-2 py-2 border-y border-slate-800">
-                    <span class="text-xs font-semibold tracking-widest text-slate-400 uppercase">Índice MONK General</span>
-                    <div class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-pink-400 to-indigo-400" id="finalScore">
-                        5.0
+                    <div class="flex items-center justify-center gap-2">
+                        <span class="text-xs font-semibold tracking-widest text-slate-400 uppercase">Nota Promedio MONK</span>
+                        <span id="badgeImpactoVisual" class="hidden text-amber-400 text-lg" title="¡Con Galardón de Impacto!">⭐</span>
                     </div>
-                    <div id="categoryBadge" class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                        Intermedio
+                    <div class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-pink-400 to-indigo-400" id="finalScore">
+                        3.0 / 5.0
                     </div>
                 </div>
 
                 <!-- Desglose de Métricas -->
-                <div class="grid grid-cols-2 gap-3 text-xs">
-                    <div class="bg-slate-900/60 p-2.5 rounded-lg border border-slate-800 flex justify-between items-center">
-                        <span class="text-slate-400">Mapeo:</span>
-                        <span id="cardM" class="font-bold text-indigo-400">5/10</span>
+                <div class="grid grid-cols-1 gap-2 text-xs">
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-800 flex justify-between items-center">
+                        <span class="text-slate-400">1. Gráficos e Identidad:</span>
+                        <span id="card1" class="font-bold text-indigo-400">3/5</span>
                     </div>
-                    <div class="bg-slate-900/60 p-2.5 rounded-lg border border-slate-800 flex justify-between items-center">
-                        <span class="text-slate-400">Orientación:</span>
-                        <span id="cardO" class="font-bold text-purple-400">5/10</span>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-800 flex justify-between items-center">
+                        <span class="text-slate-400">2. Inmersión y Mundo:</span>
+                        <span id="card2" class="font-bold text-purple-400">3/5</span>
                     </div>
-                    <div class="bg-slate-900/60 p-2.5 rounded-lg border border-slate-800 flex justify-between items-center">
-                        <span class="text-slate-400">Cognitivo:</span>
-                        <span id="cardN" class="font-bold text-pink-400">5/10</span>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-800 flex justify-between items-center">
+                        <span class="text-slate-400">3. Historia y Personajes:</span>
+                        <span id="card3" class="font-bold text-pink-400">3/5</span>
                     </div>
-                    <div class="bg-slate-900/60 p-2.5 rounded-lg border border-slate-800 flex justify-between items-center">
-                        <span class="text-slate-400">Kinestesia:</span>
-                        <span id="cardK" class="font-bold text-amber-400">5/10</span>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-800 flex justify-between items-center">
+                        <span class="text-slate-400">4. Jugabilidad y Controles:</span>
+                        <span id="card4" class="font-bold text-emerald-400">3/5</span>
+                    </div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-800 flex justify-between items-center">
+                        <span class="text-slate-400">5. Banda Sonora y Sonido:</span>
+                        <span id="card5" class="font-bold text-amber-400">3/5</span>
                     </div>
                 </div>
 
-                <!-- Descripción del perfil -->
-                <div class="bg-slate-950/40 p-4 rounded-xl border border-slate-800/80 text-xs leading-relaxed text-slate-300" id="descriptionBox">
-                    Selecciona los valores para calcular la complejidad del videojuego.
+                <!-- Veredicto Corto -->
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Veredicto Corto / Opinión</label>
+                    <textarea id="verdictText" rows="2" placeholder="Escribe tu breve conclusión..." 
+                        class="w-full bg-slate-900/80 border border-slate-700 rounded-lg p-2.5 text-xs text-white focus:outline-none focus:border-purple-500"></textarea>
                 </div>
 
             </div>
@@ -200,16 +220,14 @@
 
     <!-- Script de Lógica JavaScript -->
     <script>
-        // Actualizar título del juego
         document.getElementById('gameName').addEventListener('input', function(e) {
             const title = e.target.value.trim();
             document.getElementById('displayGameTitle').innerText = title || "Título del Juego";
         });
 
-        // 1. Cargar portada automáticamente por API de RAWG
         async function buscarPortadaAPI() {
             const gameName = document.getElementById('gameName').value.trim();
-            const apiKey = document.getElementById('rawgApiKey').value.trim() || 'c53a71e045b6477393875b29707e5860'; // Demo key fallback
+            const apiKey = 'c53a71e045b6477393875b29707e5860'; // Demo key RAWG
 
             if (!gameName) {
                 alert("Por favor ingresa primero el nombre del videojuego.");
@@ -229,101 +247,81 @@
                 }
             } catch (error) {
                 console.error("Error consultando RAWG API:", error);
-                alert("Ocurrió un error al intentar buscar la portada automáticamente.");
+                alert("Ocurrió un error al intentar buscar la portada.");
             }
         }
 
-        // 2. Cargar imagen por URL
         function actualizarImagenPorURL() {
             const url = document.getElementById('gameImageUrl').value.trim();
-            if (url) {
-                mostrarImagen(url);
-            }
+            if (url) mostrarImagen(url);
         }
 
-        // 3. Cargar imagen desde archivo local
         function cargarImagenArchivo(event) {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
-                    mostrarImagen(e.target.result);
-                }
+                reader.onload = function(e) { mostrarImagen(e.target.result); }
                 reader.readAsDataURL(file);
             }
         }
 
-        // Función para renderizar la imagen cargada
         function mostrarImagen(src) {
             const imgEl = document.getElementById('displayImage');
             const placeholderEl = document.getElementById('imagePlaceholder');
-            
             imgEl.src = src;
             imgEl.classList.remove('hidden');
             placeholderEl.classList.add('hidden');
         }
 
-        // Cálculo de Puntuación MONK
         function calcularMONK() {
-            const m = parseInt(document.getElementById('inputM').value);
-            const o = parseInt(document.getElementById('inputO').value);
-            const n = parseInt(document.getElementById('inputN').value);
-            const k = parseInt(document.getElementById('inputK').value);
+            const v1 = parseInt(document.getElementById('input1').value);
+            const v2 = parseInt(document.getElementById('input2').value);
+            const v3 = parseInt(document.getElementById('input3').value);
+            const v4 = parseInt(document.getElementById('input4').value);
+            const v5 = parseInt(document.getElementById('input5').value);
+            const hasImpact = document.getElementById('impactCheck').checked;
 
-            // Actualizar etiquetas numéricas
-            document.getElementById('valM').innerText = m;
-            document.getElementById('valO').innerText = o;
-            document.getElementById('valN').innerText = n;
-            document.getElementById('valK').innerText = k;
+            // Etiquetas
+            document.getElementById('val1').innerText = `${v1} / 5`;
+            document.getElementById('val2').innerText = `${v2} / 5`;
+            document.getElementById('val3').innerText = `${v3} / 5`;
+            document.getElementById('val4').innerText = `${v4} / 5`;
+            document.getElementById('val5').innerText = `${v5} / 5`;
 
-            document.getElementById('cardM').innerText = `${m}/10`;
-            document.getElementById('cardO').innerText = `${o}/10`;
-            document.getElementById('cardN').innerText = `${n}/10`;
-            document.getElementById('cardK').innerText = `${k}/10`;
+            document.getElementById('card1').innerText = `${v1}/5`;
+            document.getElementById('card2').innerText = `${v2}/5`;
+            document.getElementById('card3').innerText = `${v3}/5`;
+            document.getElementById('card4').innerText = `${v4}/5`;
+            document.getElementById('card5').innerText = `${v5}/5`;
 
-            // Promedio Ponderado de la Escala MONK
-            const score = ((m + o + n + k) / 4).toFixed(1);
-            document.getElementById('finalScore').innerText = score;
+            // Promedio
+            const promedio = ((v1 + v2 + v3 + v4 + v5) / 5).toFixed(1);
+            document.getElementById('finalScore').innerText = `${promedio} / 5.0`;
 
-            // Determinar Categoría
-            const badge = document.getElementById('categoryBadge');
-            const desc = document.getElementById('descriptionBox');
-
-            if (score <= 3.0) {
-                badge.innerText = "Accesible / Casual";
-                badge.className = "inline-block px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
-                desc.innerText = "Juego ideal para sesiones cortas, accesible a cualquier público, con curvas de aprendizaje muy suaves y controles intuitivos.";
-            } else if (score <= 6.0) {
-                badge.innerText = "Intermedio / Estándar";
-                badge.className = "inline-block px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30";
-                desc.innerText = "Equilibrio moderado entre tiempo de reacción, comprensión de reglas y habilidad manual. Adecuado para jugadores habituales.";
-            } else if (score <= 8.5) {
-                badge.innerText = "Avanzado / Exigente";
-                badge.className = "inline-block px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30";
-                desc.innerText = "Requiere concentración alta, dominio de múltiples mecánicas y reflejos sólidos. Apto para entusiastas que buscan un reto.";
+            // Galardón de impacto visual
+            const badgeImpacto = document.getElementById('badgeImpactoVisual');
+            if (hasImpact) {
+                badgeImpacto.classList.remove('hidden');
             } else {
-                badge.innerText = "Extremo / Hardcore";
-                badge.className = "inline-block px-3 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30";
-                desc.innerText = "Petición de precisión quirúrgica, estrategia compleja y conocimiento profundo de sus sistemas. Margen de error mínimo.";
+                badgeImpacto.classList.add('hidden');
             }
         }
 
-        // Resetear formulario
         function resetearEvaluacion() {
             document.getElementById('gameName').value = '';
             document.getElementById('gameImageUrl').value = '';
             document.getElementById('gameImageFile').value = '';
-            document.getElementById('inputM').value = 5;
-            document.getElementById('inputO').value = 5;
-            document.getElementById('inputN').value = 5;
-            document.getElementById('inputK').value = 5;
+            document.getElementById('verdictText').value = '';
+            for(let i=1; i<=5; i++) {
+                document.getElementById(`input${i}`).value = 3;
+            }
+            document.getElementById('impactCheck').checked = false;
             document.getElementById('displayGameTitle').innerText = 'Título del Juego';
             document.getElementById('displayImage').classList.add('hidden');
             document.getElementById('imagePlaceholder').classList.remove('hidden');
             calcularMONK();
         }
 
-        // Inicializar al cargar
         calcularMONK();
     </script>
 </body>
